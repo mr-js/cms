@@ -1,0 +1,104 @@
+<html>
+  <head>
+    <title>Corporate Messages System (Beta)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="static/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="static/custom.css" rel="stylesheet" media="screen">
+  </head>
+  <body class="body">
+    <div class="container">
+      <form action="" method="post">
+        <div class="row">
+          <h1>Corporate Messages System (Beta)</h1>
+          <br>
+        </div>
+        <div class="row">
+          <input type="submit" placeholder="action" name="action" value="Erase" class="submit_button"/>
+          <input type="text" placeholder="user_id" name="user_id" value="{{chat.author}}" class="input_id"/>
+          <input type="text" placeholder="chat_id" name="chat_id" value="{{chat.id}}" class="input_id"/>
+          <input type="submit" placeholder="action" name="action" value="Switch" class="submit_button"/>
+        </div>
+        <div class="row">
+          <div name="history" id="history" placeholder="history" class="history">
+          </div>
+        </div>
+        <div class="row">
+          <div name="status" id="status" placeholder="status">
+          </div>
+        </div>
+        <div class="row">
+          <textarea name="message_text" id="message_text" placeholder="message_text" class="message_text"></textarea>
+        </div>
+        <div class="row">
+          <input type="button" name="send" value="Send" class="btn btn-default"/>
+          <input type="button" name="media" value="Attach"/>
+        </div>
+        <div class="row">
+          <div name="message_media_container" id="message_media_container" placeholder="message_media_container" class="message_media_container">
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
+<script src="/static/js/jquery-3.6.1.min.js"></script>
+<script>
+    function update_callback(){
+        $.get("/history_update", function(data) {
+          if (data) {
+            $("#history").html(data);
+          }
+          // $("#history").one("click", function() {
+          //   alert( "This will be displayed only once." );
+          // 	$("#history").animate({scrollTop: $("#history")[0].scrollHeight}, 1000);
+          // });
+          $("#history").scroll(function() {
+          	clearTimeout($.data(this, 'scrollTimer'));
+          	$.data(this, 'scrollTimer', setTimeout(function() {
+          		$("#history").animate({scrollTop: $("#history")[0].scrollHeight}, 1000);
+          	}, 60000));
+          });
+        });
+        $.getJSON('/media_update', {
+            }, function(data) {
+              $("#message_media_container").html("");
+              $.each( data.items, function( i, item ) {
+                $(item).appendTo( "#message_media_container" );
+              });
+        });
+        $.getJSON('/status_update', {
+            }, function(data) {
+              $("#status").html(data.status);
+        });
+    }
+    update_callback()
+    setInterval(update_callback, 1000);
+</script>
+<script>
+  $(function() {
+    $('input[name="send"]').on('click', function(e) {
+      e.preventDefault()
+      $.getJSON('/message_send', {
+            message_text: $('textarea[name="message_text"]').val(),
+          }, function(data) {
+            $('textarea[name="message_text"]').val("");
+            $("#message_media_container").html("");
+      });
+      return false;
+    });
+  });
+</script>
+<script>
+  $(function() {
+    $('input[name="media"]').on('click', function(e) {
+      e.preventDefault()
+      var win = window.open('/media_upload', '_blank');
+      if (win) {
+          win.focus();
+      } else {
+          alert('Please allow popups for media uploading');
+      }
+      $.get('/media_upload');
+      return false;
+    });
+  });
+</script>

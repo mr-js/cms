@@ -1,0 +1,20 @@
+{% if msg.author == chat.author %}
+  {% set css_message_class = 'message_output' %}
+{% else %}
+  {% set css_message_class = 'message_input' %}
+{% endif %}
+<div class="{{ css_message_class }}">
+  <p class="message_author">{{ msg.author }}</p>
+  <hr>
+  {{ msg.text }}<br>
+  {% if msg.media %}
+    <hr>
+    <div name="media" id="media" placeholder="media" class="message_media_container">
+      {% for media_item in msg.media.values() %}
+        {{ external_media_fit(media_item)|safe }}
+      {% endfor %}
+    </div>
+  {% endif %}
+  <hr>
+  <p class="message_datetime">{{ msg.time }}</p>
+</div>

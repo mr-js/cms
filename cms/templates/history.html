@@ -1,0 +1,5 @@
+{% for msg in chat.msgs %}
+  {% with msg=msg %}
+    {% include "message.html" %}
+  {% endwith %}
+{% endfor %}

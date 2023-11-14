@@ -1,0 +1,23 @@
+{
+    "messages": {
+        "0": {
+            "text": "Hello! I'm a Mr. X and this is my message",
+            "media": {},
+            "author": "X",
+            "time": "2022.12.21 22:54:39",
+            "hash": "ef5f218e027d269fec1ee527c8702ebf"
+        },
+        "1": {
+            "text": "Hello! I'm a Mr. Y and this is my reply for your message",
+            "media": {},
+            "author": "Y",
+            "time": "2022.12.21 22:55:20",
+            "hash": "1"
+        }
+    },
+    "properties": {
+        "locked": false,
+        "modified": "2022.12.21 22:55:40",
+        "hash": "9c1308bd2459cbdbc1acfefb9b1d0bde"
+    }
+}

@@ -1,0 +1,26 @@
+{
+    "messages": {
+        "1": {
+            "text": "message #1 text",
+            "media": {
+                "1": {"type": "data:image/png;base64", "data": "iVBORw0KGgoAAAANSUhEUgAAAAgAAAAIAQMAAAD+wSzIAAAABlBMVEX///+/v7+jQ3Y5AAAADklEQVQI12P4AIX8EAgALgAD/aNpbtEAAAAASUVORK5CYII", "description": "1/1 image/png;base64"},
+                "2": {"type": "data:image/jpg;base64", "data": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=", "description": "1/2 image/jpg;base64"}
+            },
+            "author": "by. X",
+            "time": "2022.12.19 19:51:21",
+            "hash": "7f4abf2cbf4a29d476665cbc8608a7a7"
+        },
+        "2": {
+            "text": "message #2 text",
+            "media": {"1": {"type": "data:image/gif;base64", "data": "R0lGODlhAQABAIAAAP///wAAACwAAAAAAQABAAACAkQBADs=", "description": "2/1 image/gif;base64"}},
+            "author": "by. Y",
+            "time": "2022.12.19 19:52:22",
+            "hash": "987c82d75937d8088bf1679ea2e3ed8d"
+        }
+    },
+    "properties":{
+        "locked": "false",
+        "modified": "2022.12.19 19:54:54",
+        "hash": "6e60d94136188e5741102ef6a7f7467c"
+    }
+}
